@@ -21,7 +21,7 @@ Este projeto é um sistema de uma barbearia que o usuário consegue registrar um
 Instalar dependências
 
 ```bash
- # Instalar dependências
+ 
 yarn install ou npm install
 
 
