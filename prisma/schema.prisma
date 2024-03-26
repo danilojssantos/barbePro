@@ -26,6 +26,7 @@ model User{
 
   @@map("users")
   subscriptions Subscription?
+  haircuts Haircut[] //1 user pode ter varios modelos de cortes
 }
 model Subscription{
   id String @id
@@ -38,4 +39,16 @@ model Subscription{
   @@map("subscriptions")
   userId String @unique
   user User @relation(fields: [userId],references: [id])
+}
+model Haircut{
+  id String @id @default(uuid())
+  name String
+  price Float
+  status Boolean @default(true)
+  created_at DateTime? @default(now())
+  upated_at DateTime? @default(now())
+
+  @@map("haircuts")
+  user User @relation(fields: [user_id], references: [id])
+  user_id String
 }
