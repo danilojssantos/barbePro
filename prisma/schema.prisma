@@ -27,6 +27,7 @@ model User{
   @@map("users")
   subscriptions Subscription?
   haircuts Haircut[] //1 user pode ter varios modelos de cortes
+  service Service[] //1 user pode estar varios serviços
 }
 model Subscription{
   id String @id
@@ -50,5 +51,18 @@ model Haircut{
 
   @@map("haircuts")
   user User @relation(fields: [user_id], references: [id])
+  user_id String
+  service Service[]
+}
+model Service{
+  id String @id @default(uuid())
+  customer String
+  created_at DateTime? @default(now())
+  upated_at DateTime? @default(now())
+  
+  @@map("services")
+  haircut Haircut @relation(fields: [haircut_id], references: [id])
+  haircut_id String
+  use User @relation(fields: [user_id], references: [id])
   user_id String
 }
