@@ -12,3 +12,17 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User{
+  id String @id @default(uuid())
+  name String
+  email String
+  endereco String?
+  password String
+  stripe_customer_id String?
+
+  created_at DateTime? @default(now())
+  upated_at DateTime? @default(now())
+
+  @@map("users")
+}
