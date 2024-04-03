@@ -49,6 +49,10 @@ class AuthUserService{
             email: user?.email,
             endereco: user?.endereco,
             token: token,
+            subscriptions: user.subscriptions ? {
+                id: user?.subscriptions?.id,
+                status: user?.subscriptions.status
+            }: null
         }
     }
 
