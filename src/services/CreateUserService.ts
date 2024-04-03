@@ -1,3 +1,6 @@
+import prismaClient from "../prisma";
+import {hash} from 'bcryptjs'
+
 interface UserRequest{
     name: string,
     email: string,
@@ -6,9 +9,43 @@ interface UserRequest{
 
 class CreateUserService{
     async execute({name, email, password}: UserRequest){
-        console.log(name)
-        console.log(email)
-        return {ok: true}
+      
+        if (!email) {
+            throw new Error("Email incorreto");   
+        }
+        //faz a consulta dos emails no banco
+         const userAlreadyExists = await prismaClient.user.findFirst({
+            where:{
+                email: email
+            }
+         })
+
+
+         if (userAlreadyExists) {
+            throw new Error("Ususrio já existe");
+            
+         }
+
+         //criptografa a senha 
+         const passwordHash = await hash(password,8)
+
+         //cria no banco um novo usuario
+
+         const user = await prismaClient.user.create({
+            data:{
+                name: name,
+                email: email,
+                password: passwordHash
+            },
+            select:{
+                id: true,
+                name: true,
+                email: true,
+            }
+         })
+
+
+        return user;
     }
 }
 
