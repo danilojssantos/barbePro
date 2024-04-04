@@ -1,6 +1,7 @@
 import {Router, Request, Response} from 'express'
 import { CreateUserController } from './controllers/user/CreateUserController'
 import {AuthUserController} from './controllers/user/AuthUserController'
+import {DetailsUserController} from './controllers/user/DetailsUserController'
 const router = Router()
 
 
@@ -8,9 +9,11 @@ const router = Router()
  //return res.json({ok: true})
 //})
 
-//--- Rotas USER ----
+//--- Rotas USER POST ----
 router.post('/users', new CreateUserController().handle)
 router.post('/session', new AuthUserController().handle)
+//--- Rotas USER GET ----
+router.get('/me', new DetailsUserController().handle)
 
 
 export{router};
