@@ -16,5 +16,22 @@ export function isAuthentucated (
     if (!authToken) {
         return response.status(401).end();
     }
-    console.log(authToken);
+   // console.log(authToken);
+    //ignpra baure e so pega o toke 
+   const [, token] = authToken.split(" ")
+    //console.log(token);
+    try {
+        const {sub} = verify(
+            token,
+            process.env.JWT_SECRET
+        ) as PayLoad;
+
+        return next()
+        console.log(sub);
+    } catch (err) {
+
+        return response.status(401).end();
+        
+    }
+
 }
