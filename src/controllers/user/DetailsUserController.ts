@@ -6,10 +6,10 @@ class DetailsUserController{
     async handle(request: Request, response:Response){
 
         const user_id = request.user_id;
-        console.log(user_id)
+        //console.log(user_id)
         const userDetailsService = new UserDetailsService();
 
-        const detailUser = await userDetailsService.execute();
+        const detailUser = await userDetailsService.execute(user_id);
 
         return response.json(detailUser)
 
