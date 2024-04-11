@@ -34,6 +34,7 @@ class UpdateUserService {
                     endereco: true,
                 }
             })
+            return userUpdated;
             
         } catch (err) {
             console.log(err);
