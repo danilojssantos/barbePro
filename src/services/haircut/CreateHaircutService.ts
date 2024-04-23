@@ -19,6 +19,8 @@ class CreateHaircutService{
             }
         })
 
+        return haircut;
+
     }
 
 }
