@@ -4,6 +4,8 @@ import {AuthUserController} from './controllers/user/AuthUserController'
 import {DetailsUserController} from './controllers/user/DetailsUserController'
 import {isAuthentucated} from './middlewares/isAuthentucated'
 import {UpdateUserController} from './controllers/user/UpdateUserController'
+import {CreateHaircutController} from './controllers/haircut/CreateHaircutController'
+
 const router = Router()
 
 
@@ -18,5 +20,8 @@ router.post('/session', new AuthUserController().handle)
 router.get('/me',isAuthentucated, new DetailsUserController().handle)
 router.put('/users',isAuthentucated, new UpdateUserController().handle)
 
+
+//--- Rotas HAIRCUT ----
+router.post('/haircut', isAuthentucated, new CreateHaircutController().handle)
 
 export{router};
