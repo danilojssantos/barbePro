@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { ListHaircutService } from "../../services/haircut/ListHaircutService";
 
-class ListHaricutController{
+class ListHaircutController{
     async handle(request: Request, response: Response){
         const user_id = request.user_id;
         const status = request.query.status as string;
@@ -19,4 +19,4 @@ class ListHaricutController{
     }
 }
 
-export {ListHaricutController}
+export {ListHaircutController}
