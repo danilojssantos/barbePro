@@ -39,7 +39,7 @@ class UpdateHaircutService{
             
         })
 
-
+        return haircut;
 
 
     }
