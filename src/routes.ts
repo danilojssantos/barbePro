@@ -6,7 +6,7 @@ import {isAuthentucated} from './middlewares/isAuthentucated'
 import {UpdateUserController} from './controllers/user/UpdateUserController'
 import {CreateHaircutController} from './controllers/haircut/CreateHaircutController'
 import { ListHaircutController } from './controllers/haircut/ListHaircutController'
-
+import {UpdateHaircutController} from './controllers/haircut/UpdateHaircutController'
 const router = Router()
 
 
@@ -25,5 +25,5 @@ router.put('/users',isAuthentucated, new UpdateUserController().handle)
 //--- Rotas HAIRCUT ----
 router.post('/haircut', isAuthentucated, new CreateHaircutController().handle)
 router.get('/haircuts', isAuthentucated, new ListHaircutController().handle)
-
+router.put('/haircut',isAuthentucated, new UpdateHaircutController().handle)
 export{router};
